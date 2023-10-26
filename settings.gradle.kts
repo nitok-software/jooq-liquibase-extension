@@ -10,3 +10,6 @@
 
 rootProject.name = "jooq-liquibase-testcontainer-extension"
 include("lib")
+project(":lib").name = "jooq-liquibase"
+
+include("example")

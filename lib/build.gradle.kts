@@ -17,10 +17,13 @@ repositories {
     mavenCentral()
 }
 
+group = "eu.nitok"
+
 dependencies {
     implementation(platform("org.testcontainers:testcontainers-bom:1.18.3"))
-    implementation("org.testcontainers:testcontainers")
-    implementation("org.testcontainers:mysql")
+    api("org.testcontainers:testcontainers")
+    api("org.testcontainers:mysql")
+    api("org.testcontainers:postgresql")
 
     implementation("org.jooq:jooq-meta-extensions-liquibase:3.16.3")
     implementation("org.jooq:jooq-codegen:3.16.3")

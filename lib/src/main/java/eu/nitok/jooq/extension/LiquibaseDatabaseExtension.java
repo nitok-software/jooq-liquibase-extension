@@ -37,15 +37,11 @@
  */
 package eu.nitok.jooq.extension;
 
-import static org.jooq.tools.StringUtils.isBlank;
-
-import java.io.File;
-import java.lang.reflect.Method;
-import java.sql.Connection;
-import java.util.*;
-import java.util.Map.Entry;
-import java.util.function.Supplier;
-
+import liquibase.Liquibase;
+import liquibase.database.Database;
+import liquibase.database.DatabaseFactory;
+import liquibase.database.jvm.JdbcConnection;
+import liquibase.resource.*;
 import org.jooq.DSLContext;
 import org.jooq.SQLDialect;
 import org.jooq.impl.DSL;
@@ -54,14 +50,14 @@ import org.jooq.tools.Convert;
 import org.jooq.tools.JooqLogger;
 import org.jooq.tools.StringUtils;
 
-import liquibase.Liquibase;
-import liquibase.database.Database;
-import liquibase.database.DatabaseFactory;
-import liquibase.database.jvm.JdbcConnection;
-import liquibase.resource.ClassLoaderResourceAccessor;
-import liquibase.resource.CompositeResourceAccessor;
-import liquibase.resource.FileSystemResourceAccessor;
-import liquibase.resource.ResourceAccessor;
+import java.io.File;
+import java.lang.reflect.Method;
+import java.sql.Connection;
+import java.util.*;
+import java.util.Map.Entry;
+import java.util.function.Supplier;
+
+import static org.jooq.tools.StringUtils.isBlank;
 
 
 public class LiquibaseDatabaseExtension {
@@ -86,8 +82,8 @@ public class LiquibaseDatabaseExtension {
             scripts = "";
             log.warn("No scripts defined", "It is recommended that you provide an explicit script directory to scan");
         }
-
         Database database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(new JdbcConnection(connection));
+        System.out.println("database created "+database.getConnection().getURL());
         String contexts = "";
 
         Map<String, Method> SETTERS = new HashMap<>();
@@ -107,9 +103,6 @@ public class LiquibaseDatabaseExtension {
         //         Database.setXyz() configuration setter calls
         for (Entry<Object, Object> entry : properties.entrySet()) {
             String key = "" + entry.getKey();
-
-
-            var dbClass = database.getClass();
             if (key.startsWith("database.")) {
                 String property = key.substring("database.".length());
                 Method setter = SETTERS.get("set" + Character.toUpperCase(property.charAt(0)) + property.substring(1));
