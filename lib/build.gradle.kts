@@ -17,7 +17,7 @@ repositories {
     mavenCentral()
 }
 
-group = "eu.nitok"
+group = "eu.nitok.gradle"
 
 dependencies {
     implementation(platform("org.testcontainers:testcontainers-bom:1.18.3"))
