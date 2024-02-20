@@ -10,6 +10,7 @@
 plugins {
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
+    `maven-publish`
 }
 
 repositories {
@@ -29,4 +30,11 @@ dependencies {
     implementation("org.jooq:jooq-codegen:3.16.3")
 
     implementation("mysql:mysql-connector-java:8.0.33")
+}
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["java"])
+        }
+    }
 }
