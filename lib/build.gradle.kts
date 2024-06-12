@@ -30,6 +30,7 @@ dependencies {
     implementation("org.jooq:jooq-codegen:3.16.3")
 
     implementation("mysql:mysql-connector-java:8.0.33")
+    implementation("org.postgresql:postgresql:42.7.3")
 }
 publishing {
     publications {
