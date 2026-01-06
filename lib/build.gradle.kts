@@ -9,7 +9,7 @@ repositories {
 }
 
 group = "eu.nitok.gradle"
-version = "0.1.1"
+version = "0.1.2"
 
 dependencies {
     implementation(platform(libs.testcontainers.bom))
