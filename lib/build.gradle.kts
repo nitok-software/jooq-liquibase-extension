@@ -1,5 +1,4 @@
 plugins {
-    // Apply the java-library plugin for API and implementation separation.
     `java-library`
     `maven-publish`
 }
@@ -13,16 +12,16 @@ group = "eu.nitok.gradle"
 version = "0.1.1"
 
 dependencies {
-    implementation(platform("org.testcontainers:testcontainers-bom:2.0.3"))
-    api("org.testcontainers:testcontainers")
-    api("org.testcontainers:mysql")
-    api("org.testcontainers:postgresql")
+    implementation(platform(libs.testcontainers.bom))
+    api(libs.testcontainers.core)
+    api(libs.testcontainers.mysql)
+    api(libs.testcontainers.postgres)
 
-    implementation("org.jooq:jooq-meta-extensions-liquibase:3.16.3")
-    implementation("org.jooq:jooq-codegen:3.16.3")
+    implementation(libs.jooq.metaExtensions.liquibase)
+    implementation(libs.jooq.codegen)
 
-    implementation("mysql:mysql-connector-java:8.0.33")
-    implementation("org.postgresql:postgresql:42.7.3")
+    implementation(libs.driver.mysql)
+    implementation(libs.driver.postgres)
 }
 
 publishing {

@@ -1,0 +1,12 @@
+[versions]
+jooq-version="3.16.3"
+
+[libraries]
+jooq-metaExtensions-liquibase={module="org.jooq:jooq-meta-extensions-liquibase",version.ref="jooq-version"}
+jooq-codegen={module="org.jooq:jooq-codegen",version.ref="jooq-version"}
+driver-mysql="mysql:mysql-connector-java:8.0.33"
+driver-postgres="org.postgresql:postgresql:42.7.3"
+testcontainers-bom={module="org.testcontainers:testcontainers-bom", version="1.18.3"}
+testcontainers-core={module="org.testcontainers:testcontainers"}
+testcontainers-mysql={module="org.testcontainers:mysql"}
+testcontainers-postgres={module="org.testcontainers:postgresql"}
